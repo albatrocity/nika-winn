@@ -2,13 +2,18 @@ import React from "react";
 import PropTypes from "prop-types";
 import { WorkPostTemplate } from "../../templates/work-post";
 
-const WorkPostPreview = ({ entry, widgetFor }) => (
-  <WorkPostTemplate
-    content={widgetFor("body")}
-    description={entry.getIn(["data", "description"])}
-    title={entry.getIn(["data", "title"])}
-  />
-);
+const WorkPostPreview = ({ entry, widgetFor, getAsset }) => {
+  const image = entry.getIn(["data", "image"]);
+  const bg = getAsset(image);
+  return (
+    <WorkPostTemplate
+      caption={entry.getIn(["data", "caption"])}
+      description={entry.getIn(["data", "description"])}
+      title={entry.getIn(["data", "title"])}
+      imageUrl={bg.toString()}
+    />
+  );
+};
 
 WorkPostPreview.propTypes = {
   entry: PropTypes.shape({

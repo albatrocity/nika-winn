@@ -6,11 +6,11 @@ import { Box } from "grommet";
 
 const CollectionItemWork = ({ post }) => {
   const {
-    frontmatter: { title, description, image, display_size }
+    frontmatter: { title, description, image, display_size = "small" }
   } = post;
   return (
-    <Box basis={display_size} direction="column" flex="grow" overflow="visible">
-      <Link to={post.fields.slug}>
+    <Box className="collection-item">
+      <Link to={post.fields.slug} style={{ display: "block" }}>
         {image && (
           <Img
             fluid={image.childImageSharp.fluid}

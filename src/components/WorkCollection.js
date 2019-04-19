@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import chunkArray from "../lib/chunkArray";
 import { Link, graphql, StaticQuery } from "gatsby";
-import { Box } from "grommet";
+import { Box, Grid } from "grommet";
 
-import CollectionItemWork from "./CollectionItemWork";
+import CollectionGroupWork from "./CollectionGroupWork";
 
 class WorkCollection extends React.Component {
   render() {
@@ -11,10 +12,10 @@ class WorkCollection extends React.Component {
     const { edges: posts } = data.allMarkdownRemark;
 
     return (
-      <Box gap="small" flex="grow" direction="row-responsive" wrap="true">
+      <Box direction="row-responsive" className="wrap" gap="small">
         {posts &&
-          posts.map(({ node: post }) => (
-            <CollectionItemWork post={post} key={post.id} />
+          chunkArray(posts, 3, true).map(group => (
+            <CollectionGroupWork group={group} />
           ))}
       </Box>
     );
@@ -48,6 +49,8 @@ export default () => (
                 title
                 templateKey
                 date(formatString: "MMMM DD, YYYY")
+                description
+                caption
                 display_size
                 image {
                   childImageSharp {

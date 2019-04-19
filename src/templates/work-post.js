@@ -10,6 +10,7 @@ export const WorkPostTemplate = ({
   content,
   contentComponent,
   description,
+  caption,
   title,
   helmet
 }) => {
@@ -82,6 +83,14 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         title
         description
+        caption
+        image {
+          childImageSharp {
+            fluid(maxWidth: 1200, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
     }
   }

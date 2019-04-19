@@ -28,10 +28,11 @@ collections:
           options: ["xsmall", "small", "medium", "large", "xlarge"],
           default: "small",
         }
+      - { label: "Caption", name: "caption", widget: "text", required: false }
       - {
-          label: "Caption/Description",
+          label: "Description",
           name: "description",
-          widget: "text",
+          widget: "markdown",
           required: false,
         }
 
