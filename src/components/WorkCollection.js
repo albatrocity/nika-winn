@@ -48,6 +48,7 @@ export default () => (
                 title
                 templateKey
                 date(formatString: "MMMM DD, YYYY")
+                display_size
                 image {
                   childImageSharp {
                     fluid(maxWidth: 800, quality: 100) {

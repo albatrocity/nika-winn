@@ -6,10 +6,10 @@ import { Box } from "grommet";
 
 const CollectionItemWork = ({ post }) => {
   const {
-    frontmatter: { title, description, image }
+    frontmatter: { title, description, image, display_size }
   } = post;
   return (
-    <Box basis="small" direction="column" flex="grow" overflow="visible">
+    <Box basis={display_size} direction="column" flex="grow" overflow="visible">
       <Link to={post.fields.slug}>
         {image && (
           <Img
