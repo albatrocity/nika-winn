@@ -1,6 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link, graphql, StaticQuery } from "gatsby";
+import { Box, Heading } from "grommet";
+
+import PreviewCompatibleImage from "./PreviewCompatibleImage";
 
 class WorkCollection extends React.Component {
   render() {
@@ -8,35 +11,17 @@ class WorkCollection extends React.Component {
     const { edges: posts } = data.allMarkdownRemark;
 
     return (
-      <div className="columns is-multiline">
+      <Box>
         {posts &&
           posts.map(({ node: post }) => (
-            <div className="is-parent column is-6" key={post.id}>
-              <article className="tile is-child box notification">
-                <p>
-                  <Link
-                    className="title has-text-primary is-size-4"
-                    to={post.fields.slug}
-                  >
-                    {post.frontmatter.title}
-                  </Link>
-                  <span> &bull; </span>
-                  <span className="subtitle is-size-5 is-block">
-                    {post.frontmatter.date}
-                  </span>
-                </p>
-                <p>
-                  {post.excerpt}
-                  <br />
-                  <br />
-                  <Link className="button" to={post.fields.slug}>
-                    Keep Reading →
-                  </Link>
-                </p>
-              </article>
-            </div>
+            <Box key={post.id}>
+              <Link to={post.fields.slug}>
+                <Heading level={2}>{post.frontmatter.title}</Heading>
+                {/* <PreviewCompatibleImage /> */}
+              </Link>
+            </Box>
           ))}
-      </div>
+      </Box>
     );
   }
 }

@@ -1,5 +1,5 @@
 ---
 templateKey: index-page
-title: Great coffee with a conscience
+title: Nika Winn
 body: Hello
 ---

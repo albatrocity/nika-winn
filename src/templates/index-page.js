@@ -1,52 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Box } from "grommet";
 import { Link, graphql } from "gatsby";
 
 import Layout from "../components/Layout";
 import Features from "../components/Features";
 import WorkCollection from "../components/WorkCollection";
 
-export const IndexPageTemplate = ({
-  body
-}) => (
-  <div>
-    <div
-      className="full-width-image margin-top-0"
-    >
-      <div
-        style={{
-          display: "flex",
-          height: "150px",
-          lineHeight: "1",
-          justifyContent: "space-around",
-          alignItems: "left",
-          flexDirection: "column"
-        }}
-      >
-      </div>
-    </div>
-    <section className="section section--gradient">
-      <div className="container">
-        <div className="section">
-          <div className="columns">
-            <div className="column is-10 is-offset-1">
-              <div className="content">
-                <div className="columns">
-                  <div className="column is-12">
-                    <p>{body}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+export const IndexPageTemplate = ({ body }) => (
+  <Box>
+    <Box align="center">{body}</Box>
+    <Box align="center">
+      <WorkCollection />
+    </Box>
+  </Box>
 );
 
 IndexPageTemplate.propTypes = {
-  body: PropTypes.string,
+  body: PropTypes.string
 };
 
 const IndexPage = ({ data }) => {
@@ -54,9 +25,7 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout>
-      <IndexPageTemplate
-        body={frontmatter.body}
-      />
+      <IndexPageTemplate body={frontmatter.body} />
     </Layout>
   );
 };
