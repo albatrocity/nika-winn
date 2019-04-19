@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link, graphql, StaticQuery } from "gatsby";
-import { Box, Heading } from "grommet";
+import { Box } from "grommet";
 
-import PreviewCompatibleImage from "./PreviewCompatibleImage";
+import CollectionItemWork from "./CollectionItemWork";
 
 class WorkCollection extends React.Component {
   render() {
@@ -11,16 +11,9 @@ class WorkCollection extends React.Component {
     const { edges: posts } = data.allMarkdownRemark;
 
     return (
-      <Box>
+      <Box direction="row-responsive">
         {posts &&
-          posts.map(({ node: post }) => (
-            <Box key={post.id}>
-              <Link to={post.fields.slug}>
-                <Heading level={2}>{post.frontmatter.title}</Heading>
-                {/* <PreviewCompatibleImage /> */}
-              </Link>
-            </Box>
-          ))}
+          posts.map(({ node: post }) => <CollectionItemWork post={post} />)}
       </Box>
     );
   }
@@ -53,6 +46,13 @@ export default () => (
                 title
                 templateKey
                 date(formatString: "MMMM DD, YYYY")
+                image {
+                  childImageSharp {
+                    fluid(maxWidth: 800, quality: 100) {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
+                }
               }
             }
           }

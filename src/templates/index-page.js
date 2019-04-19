@@ -4,7 +4,6 @@ import { Box } from "grommet";
 import { Link, graphql } from "gatsby";
 
 import Layout from "../components/Layout";
-import Features from "../components/Features";
 import WorkCollection from "../components/WorkCollection";
 
 export const IndexPageTemplate = ({ body }) => (
