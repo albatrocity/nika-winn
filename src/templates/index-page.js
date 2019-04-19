@@ -9,7 +9,7 @@ import WorkCollection from "../components/WorkCollection";
 export const IndexPageTemplate = ({ body }) => (
   <Box>
     <Box align="center">{body}</Box>
-    <Box align="center">
+    <Box align="center" direction="row">
       <WorkCollection />
     </Box>
   </Box>

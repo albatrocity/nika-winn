@@ -9,7 +9,7 @@ const CollectionItemWork = ({ post }) => {
     frontmatter: { title, description, image }
   } = post;
   return (
-    <Box basis="small" direction="column" flex="grow">
+    <Box basis="small" direction="column" flex="grow" overflow="visible">
       <Link to={post.fields.slug}>
         {image && (
           <Img

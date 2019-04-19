@@ -22,6 +22,11 @@ collections:
       - { label: "Date", name: "date", widget: "datetime" }
       - { label: "Image", name: "image", widget: "image" }
       - {
+          label: "Full Width on Home Page",
+          name: "full_width",
+          widget: "boolean",
+        }
+      - {
           label: "Caption/Description",
           name: "description",
           widget: "text",
