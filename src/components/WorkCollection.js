@@ -11,9 +11,11 @@ class WorkCollection extends React.Component {
     const { edges: posts } = data.allMarkdownRemark;
 
     return (
-      <Box direction="row-responsive">
+      <Box fill gap="small" direction="row-responsive">
         {posts &&
-          posts.map(({ node: post }) => <CollectionItemWork post={post} />)}
+          posts.map(({ node: post }) => (
+            <CollectionItemWork post={post} key={post.id} />
+          ))}
       </Box>
     );
   }
