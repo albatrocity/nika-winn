@@ -8,9 +8,9 @@ const WorkPostPreview = ({ entry, widgetFor, getAsset }) => {
   return (
     <WorkPostTemplate
       caption={entry.getIn(["data", "caption"])}
-      description={entry.getIn(["data", "description"])}
+      description={widgetFor("description")}
       title={entry.getIn(["data", "title"])}
-      imageUrl={bg.toString()}
+      image={bg.toString()}
     />
   );
 };

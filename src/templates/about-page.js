@@ -1,38 +1,56 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { graphql } from 'gatsby'
-import Layout from '../components/Layout'
-import Content, { HTMLContent } from '../components/Content'
+import React from "react";
+import PropTypes from "prop-types";
+import { graphql } from "gatsby";
+import Layout from "../components/Layout";
+import Content, { HTMLContent } from "../components/Content";
+import ContactForm from "../components/ContactForm";
+import PreviewCompatibleImage from "../components/PreviewCompatibleImage";
+import Container from "../components/PageContainer";
+import SocialLink from "../components/SocialLink";
+import { Box } from "grommet";
 
-export const AboutPageTemplate = ({ title, content, contentComponent }) => {
-  const PageContent = contentComponent || Content
+import useSiteMetadata from "../components/SiteMetadata";
+
+export const AboutPageTemplate = ({
+  title,
+  content,
+  contentComponent,
+  image,
+  twitter,
+  instagram,
+  etsy
+}) => {
+  const PageContent = contentComponent || Content;
+  const siteMeta = useSiteMetadata();
 
   return (
-    <section className="section section--gradient">
-      <div className="container">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
-            <div className="section">
-              <h2 className="title is-size-3 has-text-weight-bold is-bold-light">
-                {title}
-              </h2>
-              <PageContent className="content" content={content} />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
+    <Container>
+      <Box direction="row-responsive" gap="medium">
+        <Box basis="large">
+          <PreviewCompatibleImage imageInfo={{ image, alt: siteMeta.title }} />
+          <PageContent className="content" content={content} />
+        </Box>
+        <Box basis="medium">
+          <Box direction="column" gap="xsmall">
+            {instagram && <SocialLink service="instagram" handle={instagram} />}
+            {twitter && <SocialLink service="twitter" handle={twitter} />}
+            {etsy && <SocialLink service="etsy" handle={etsy} />}
+          </Box>
+          <ContactForm />
+        </Box>
+      </Box>
+    </Container>
+  );
+};
 
 AboutPageTemplate.propTypes = {
   title: PropTypes.string.isRequired,
   content: PropTypes.string,
-  contentComponent: PropTypes.func,
-}
+  contentComponent: PropTypes.func
+};
 
 const AboutPage = ({ data }) => {
-  const { markdownRemark: post } = data
+  const { markdownRemark: post } = data;
 
   return (
     <Layout>
@@ -40,16 +58,20 @@ const AboutPage = ({ data }) => {
         contentComponent={HTMLContent}
         title={post.frontmatter.title}
         content={post.html}
+        image={post.frontmatter.image}
+        instagram={post.frontmatter.instagram_username}
+        twitter={post.frontmatter.twitter_username}
+        etsy={post.frontmatter.etsy_username}
       />
     </Layout>
-  )
-}
+  );
+};
 
 AboutPage.propTypes = {
-  data: PropTypes.object.isRequired,
-}
+  data: PropTypes.object.isRequired
+};
 
-export default AboutPage
+export default AboutPage;
 
 export const aboutPageQuery = graphql`
   query AboutPage($id: String!) {
@@ -57,7 +79,17 @@ export const aboutPageQuery = graphql`
       html
       frontmatter {
         title
+        instagram_username
+        twitter_username
+        etsy_username
+        image {
+          childImageSharp {
+            fluid(maxWidth: 800, quality: 80) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
       }
     }
   }
-`
+`;

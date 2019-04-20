@@ -4,38 +4,64 @@ import { kebabCase } from "lodash";
 import Helmet from "react-helmet";
 import { graphql, Link } from "gatsby";
 import Layout from "../components/Layout";
+import { Box, Heading, Text } from "grommet";
+import styled from "styled-components";
 import Content, { HTMLContent } from "../components/Content";
+import Container from "../components/PageContainer";
+import PreviewCompatibleImage from "../components/PreviewCompatibleImage";
+
+const Caption = styled(Text)`
+  font-style: italic;
+`;
 
 export const WorkPostTemplate = ({
   content,
   contentComponent,
   description,
+  date,
   caption,
+  image,
   title,
   helmet
 }) => {
   const PostContent = contentComponent || Content;
-
   return (
-    <section className="section">
+    <section>
       {helmet || ""}
-      <div className="container content">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
-            <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
-              {title}
-            </h1>
-            <p>{description}</p>
-            <PostContent content={content} />
-          </div>
-        </div>
-      </div>
+      <Container>
+        <Heading
+          alignSelf="center"
+          textAlign="center"
+          margin={"small"}
+          level={1}
+        >
+          {title}
+        </Heading>
+        <Heading alignSelf="center" level={4} margin={{ top: "none" }}>
+          {date}
+        </Heading>
+        {image && (
+          <PreviewCompatibleImage
+            imageInfo={{ image, alt: description || title }}
+          />
+        )}
+        {caption && (
+          <Box pad="medium">
+            <Caption textAlign="center">{caption}</Caption>
+          </Box>
+        )}
+        {description && (
+          <Box pad="small">
+            <PostContent content={description} />
+          </Box>
+        )}
+      </Container>
     </section>
   );
 };
 
 WorkPostTemplate.propTypes = {
-  content: PropTypes.node.isRequired,
+  content: PropTypes.node,
   contentComponent: PropTypes.func,
   description: PropTypes.string,
   title: PropTypes.string,
@@ -51,6 +77,9 @@ const WorkPost = ({ data }) => {
         content={post.html}
         contentComponent={HTMLContent}
         description={post.frontmatter.description}
+        caption={post.frontmatter.caption}
+        image={post.frontmatter.image}
+        date={post.frontmatter.date}
         helmet={
           <Helmet titleTemplate="%s | Work">
             <title>{`${post.frontmatter.title}`}</title>
@@ -80,7 +109,7 @@ export const pageQuery = graphql`
       id
       html
       frontmatter {
-        date(formatString: "MMMM DD, YYYY")
+        date(formatString: "YYYY")
         title
         description
         caption

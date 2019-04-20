@@ -2,13 +2,14 @@ import React from "react";
 import { Grommet, Box } from "grommet";
 import Helmet from "react-helmet";
 import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
+import Header from "../components/Header";
+import theme from "../lib/theme";
 import useSiteMetadata from "./SiteMetadata";
 
 const Layout = ({ children }) => {
   const { title, description } = useSiteMetadata();
   return (
-    <Grommet>
+    <Grommet theme={theme}>
       <Helmet>
         <html lang="en" />
         <title>{title}</title>
@@ -44,7 +45,7 @@ const Layout = ({ children }) => {
         <meta property="og:url" content="/" />
         <meta property="og:image" content="/img/og-image.jpg" />
       </Helmet>
-      <Navbar />
+      <Header />
       <Box>{children}</Box>
       <Footer />
     </Grommet>

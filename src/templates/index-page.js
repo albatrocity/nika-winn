@@ -4,14 +4,20 @@ import { Box } from "grommet";
 import { Link, graphql } from "gatsby";
 
 import Layout from "../components/Layout";
+import Container from "../components/PageContainer";
+import Content from "../components/Content";
 import WorkCollection from "../components/WorkCollection";
 
 export const IndexPageTemplate = ({ body }) => (
   <Box>
-    <Box align="center">{body}</Box>
-    <div>
-      <WorkCollection />
-    </div>
+    <Container>
+      {body && (
+        <Box pad={{ vertical: "medium" }}>
+          <Content content={body} />
+        </Box>
+      )}
+    </Container>
+    <WorkCollection />
   </Box>
 );
 

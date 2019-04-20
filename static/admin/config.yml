@@ -62,3 +62,14 @@ collections:
             }
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Body", name: "body", widget: "markdown" }
+          - { label: "Image", name: "image", widget: "image" }
+          - {
+              label: "Instagram username",
+              name: "instagram_username",
+              widget: "string",
+            }
+          - {
+              label: "Twitter username",
+              name: "twitter_username",
+              widget: "string",
+            }

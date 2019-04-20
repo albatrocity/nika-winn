@@ -58,6 +58,21 @@ module.exports = {
         modulePath: `${__dirname}/src/cms/cms.js`
       }
     },
+    {
+      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      options: {
+        fonts: [
+          {
+            family: `Passion One`,
+            variants: [`400`, `700`]
+          },
+          {
+            family: `Lato`,
+            variants: [`400`, `400i`, `700`, `700i`]
+          }
+        ]
+      }
+    },
     "gatsby-plugin-netlify" // make sure to keep it last in the array
   ],
   // for avoiding CORS while developing Netlify Functions locally
