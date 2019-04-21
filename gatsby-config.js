@@ -3,7 +3,8 @@ const proxy = require("http-proxy-middleware");
 module.exports = {
   siteMetadata: {
     title: "Nika Winn",
-    description: ""
+    description: "",
+    instagram: "kneekuh_"
   },
   plugins: [
     "gatsby-plugin-react-helmet",

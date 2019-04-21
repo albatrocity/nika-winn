@@ -23,13 +23,18 @@ class WorkCollection extends React.Component {
 
     return (
       <>
-        <Box direction="row-responsive" className="wrap" gap="small">
+        <Box
+          pad={{ vertical: "small" }}
+          direction="row-responsive"
+          className="wrap"
+          gap="small"
+        >
           {otherPosts &&
             chunkArray(otherPosts, 3, true).map((group, i) => (
               <CollectionGroupWork group={group} key={`group-${i}`} />
             ))}
         </Box>
-        <Box direction="row">
+        <Box pad={{ vertical: "small" }} direction="row" gap="small">
           {bigPosts &&
             bigPosts.map(x => (
               <Box flex="grow" direction="column" key={get("node.id", x)}>

@@ -3,7 +3,7 @@ import CollectionItemWork from "./CollectionItemWork";
 import { Box } from "grommet";
 
 const CollectionGroupWork = ({ group }) => (
-  <Box direciton="column" flex="grow" className="collection-group">
+  <Box direciton="column" flex="grow" className="collection-group" gap="small">
     {group.map(({ node: post }) => (
       <CollectionItemWork post={post} key={post.id} />
     ))}
