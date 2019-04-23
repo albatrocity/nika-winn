@@ -79,7 +79,7 @@ export default () => (
                 caption
                 image {
                   childImageSharp {
-                    fluid(maxWidth: 800, quality: 100) {
+                    fluid(maxWidth: 600, quality: 60) {
                       ...GatsbyImageSharpFluid
                     }
                   }
