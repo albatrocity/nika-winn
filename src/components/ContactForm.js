@@ -10,6 +10,12 @@ import {
   Button
 } from "grommet";
 
+function encode(data) {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&");
+}
+
 class ContactForm extends Component {
   constructor(props) {
     super(props);
