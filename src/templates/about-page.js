@@ -27,11 +27,11 @@ export const AboutPageTemplate = ({
   return (
     <Container>
       <Box direction="row-responsive" gap="medium">
-        <Box basis="large">
+        <Box>
           <PreviewCompatibleImage imageInfo={{ image, alt: siteMeta.title }} />
           <PageContent className="content" content={content} />
         </Box>
-        <Box basis="medium">
+        <Box flex="shrink" style={{ minWidth: "200px" }}>
           <Box direction="column" gap="xsmall">
             {email && <SocialLink service="email" handle={email} />}
             {instagram && <SocialLink service="instagram" handle={instagram} />}
