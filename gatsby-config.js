@@ -74,6 +74,9 @@ module.exports = {
         ]
       }
     },
+    {
+      resolve: `gatsby-plugin-styled-components`
+    },
     "gatsby-plugin-netlify" // make sure to keep it last in the array
   ],
   // for avoiding CORS while developing Netlify Functions locally
