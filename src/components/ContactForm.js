@@ -7,7 +7,9 @@ import {
   FormField,
   TextInput,
   TextArea,
-  Button
+  Button,
+  Paragraph,
+  Text
 } from "grommet";
 
 function encode(data) {
@@ -19,7 +21,11 @@ function encode(data) {
 class ContactForm extends Component {
   constructor(props) {
     super(props);
-    this.state = { isValidated: false };
+    this.state = {
+      isValidated: false,
+      isSubmitted: false,
+      isSubmitting: false
+    };
   }
 
   handleChange = e => {
@@ -28,6 +34,7 @@ class ContactForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    this.setState({ isSubmitting: true });
     const form = e.target;
     fetch("/", {
       method: "POST",
@@ -37,69 +44,79 @@ class ContactForm extends Component {
         ...this.state
       })
     })
-      .then(() => navigate(form.getAttribute("action")))
+      .then(() => this.setState({ isSubmitted: true, isSubmitting: false }))
       .catch(error => alert(error));
   };
 
   render() {
+    const { isSubmitted, isSubmitting } = this.state;
     return (
       <Box>
         <Heading level={3}>Contact</Heading>
-        <Form
-          name="contact"
-          method="post"
-          action="/contact/thanks/"
-          data-netlify="true"
-          data-netlify-honeypot="bot-field"
-          onSubmit={this.handleSubmit}
-        >
-          {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
-          <input type="hidden" name="form-name" value="contact" />
-          <div hidden>
-            <label>
-              Don’t fill this out:{" "}
-              <input name="bot-field" onChange={this.handleChange} />
-            </label>
-          </div>
-          <FormField>
-            <TextInput
-              className="input"
-              type={"text"}
-              name={"name"}
-              onChange={this.handleChange}
-              id={"name"}
-              placeholder="Name"
-              required={true}
-              htmlFor={"name"}
-            />
-          </FormField>
-          <FormField>
-            <TextInput
-              className="input"
-              type={"email"}
-              name={"email"}
-              onChange={this.handleChange}
-              id={"email"}
-              required={true}
-              htmlFor={"email"}
-              placeholder="Email"
-            />
-          </FormField>
+        {isSubmitted ? (
+          <Text>Thanks for getting in touch!</Text>
+        ) : (
+          <Form
+            name="contact"
+            method="post"
+            action="/contact/thanks/"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+            onSubmit={this.handleSubmit}
+          >
+            {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
+            <input type="hidden" name="form-name" value="contact" />
+            <div hidden>
+              <label>
+                Don’t fill this out:{" "}
+                <input name="bot-field" onChange={this.handleChange} />
+              </label>
+            </div>
+            <FormField>
+              <TextInput
+                className="input"
+                type={"text"}
+                name={"name"}
+                onChange={this.handleChange}
+                id={"name"}
+                placeholder="Name"
+                required={true}
+                htmlFor={"name"}
+              />
+            </FormField>
+            <FormField>
+              <TextInput
+                className="input"
+                type={"email"}
+                name={"email"}
+                onChange={this.handleChange}
+                id={"email"}
+                required={true}
+                htmlFor={"email"}
+                placeholder="Email"
+              />
+            </FormField>
 
-          <FormField>
-            <TextArea
-              className="textarea"
-              name={"message"}
-              onChange={this.handleChange}
-              id={"message"}
-              required={true}
-              htmlFor={"message"}
-              placeholder="Message"
-            />
-          </FormField>
+            <FormField>
+              <TextArea
+                className="textarea"
+                name={"message"}
+                onChange={this.handleChange}
+                id={"message"}
+                required={true}
+                htmlFor={"message"}
+                placeholder="Message"
+              />
+            </FormField>
 
-          <Button type="submit" primary label="Send" />
-        </Form>
+            <Button
+              type="submit"
+              primary
+              label="Send"
+              disabled={isSubmitting}
+            />
+          </Form>
+        )}
       </Box>
     );
   }
