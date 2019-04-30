@@ -24,7 +24,12 @@ const HeaderTemplate = ({ data: { file } }) => {
       >
         <Box direction="column" flex="grow" justify="center">
           <HeaderLink to={"/"}>
-            <Img fluid={file.childImageSharp.fluid} alt={title} />
+            <Img
+              fluid={file.childImageSharp.fluid}
+              alt={title}
+              critical={true}
+              fadeIn={false}
+            />
           </HeaderLink>
         </Box>
         <Box direction="row" gap="small" justify="end">
