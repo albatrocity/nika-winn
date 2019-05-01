@@ -10,7 +10,7 @@ const WorkPostPreview = ({ entry, widgetFor, getAsset }) => {
       caption={entry.getIn(["data", "caption"])}
       description={widgetFor("description")}
       title={entry.getIn(["data", "title"])}
-      image={bg.toString()}
+      image={bg && bg.toString()}
     />
   );
 };
