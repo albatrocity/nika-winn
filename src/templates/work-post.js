@@ -115,7 +115,7 @@ export const pageQuery = graphql`
         caption
         image {
           childImageSharp {
-            fluid(maxWidth: 1200, quality: 100) {
+            fluid(maxWidth: 1000, quality: 95) {
               ...GatsbyImageSharpFluid
             }
           }
