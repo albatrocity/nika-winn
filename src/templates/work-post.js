@@ -81,7 +81,7 @@ const WorkPost = ({ data }) => {
         image={post.frontmatter.image}
         date={post.frontmatter.date}
         helmet={
-          <Helmet titleTemplate="%s | Work">
+          <Helmet titleTemplate="%s | Nika Winn">
             <title>{`${post.frontmatter.title}`}</title>
             <meta
               name="description"
