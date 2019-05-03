@@ -4,7 +4,7 @@ path: /contact
 title: Contact
 image: /img/nika_studio.jpg
 instagram_username: kneekuh_
-twitter_username: kneekuh_
+twitter_username:
 etsy_username: NikaWinnArt
 email: info@nikawinn.com
 ---

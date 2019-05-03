@@ -1,12 +1,15 @@
 const theme = {
   global: {
     font: {
-      family: "Lato"
+      family: "Heebo"
+    },
+    colors: {
+      brand: "#000"
     }
   },
   heading: {
     font: {
-      family: "Passion One"
+      family: "Heebo"
     }
   }
 };

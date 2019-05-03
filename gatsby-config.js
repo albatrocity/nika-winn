@@ -64,12 +64,8 @@ module.exports = {
       options: {
         fonts: [
           {
-            family: `Passion One`,
-            variants: [`400`, `700`]
-          },
-          {
-            family: `Lato`,
-            variants: [`400`, `400i`, `700`, `700i`]
+            family: `Heebo`,
+            variants: [`300`, `400`, `400i`, `700`, `700i`]
           }
         ]
       }

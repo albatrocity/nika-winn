@@ -33,7 +33,7 @@ export const WorkPostTemplate = ({
           alignSelf="center"
           textAlign="center"
           margin={"small"}
-          level={1}
+          level={2}
         >
           {title}
         </Heading>
