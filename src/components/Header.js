@@ -11,7 +11,13 @@ const HeaderLink = styled(Link)`
   text-decoration: none;
 `;
 
-const HeaderTemplate = ({ data: { file } }) => {
+const HeaderTemplate = ({
+  data: {
+    markdownRemark: {
+      frontmatter: { header }
+    }
+  }
+}) => {
   const { title, instagram } = useSiteMetadata();
   return (
     <Container direction="row">
@@ -25,7 +31,7 @@ const HeaderTemplate = ({ data: { file } }) => {
         <Box direction="column" flex="grow" justify="center">
           <HeaderLink to={"/"}>
             <Img
-              fluid={file.childImageSharp.fluid}
+              fluid={header.childImageSharp.fluid}
               alt={title}
               critical={true}
               fadeIn={false}
@@ -48,11 +54,15 @@ const HeaderTemplate = ({ data: { file } }) => {
 const Header = () => (
   <StaticQuery
     query={graphql`
-      query {
-        file(relativePath: { eq: "nika_winn_name.jpg" }) {
-          childImageSharp {
-            fluid(maxWidth: 1000, quality: 80) {
-              ...GatsbyImageSharpFluid
+      query IndexPageHeader {
+        markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
+          frontmatter {
+            header {
+              childImageSharp {
+                fluid(maxWidth: 1000, quality: 80) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
             }
           }
         }
