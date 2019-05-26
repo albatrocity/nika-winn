@@ -72,5 +72,6 @@ collections:
               label: "Twitter username",
               name: "twitter_username",
               widget: "string",
+              required: false,
             }
           - { label: "Contact Email", name: "email", widget: "string" }
