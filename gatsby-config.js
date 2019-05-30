@@ -4,7 +4,8 @@ module.exports = {
   siteMetadata: {
     title: "Nika Winn",
     description: "",
-    instagram: "kneekuh_"
+    instagram: "kneekuh_",
+    siteUrl: "http://nikawinn.com"
   },
   plugins: [
     {
