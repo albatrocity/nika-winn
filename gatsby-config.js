@@ -7,7 +7,18 @@ module.exports = {
     instagram: "kneekuh_"
   },
   plugins: [
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Nika Winn - Artist & Illustrator`,
+        short_name: `Nika Winn`,
+        start_url: `/`,
+        background_color: `#fff`,
+        display: `standalone`
+      }
+    },
     "gatsby-plugin-react-helmet",
+    `gatsby-plugin-advanced-sitemap`,
     {
       // keep as first gatsby-source-filesystem plugin for gatsby image support
       resolve: "gatsby-source-filesystem",
