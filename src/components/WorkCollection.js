@@ -10,16 +10,10 @@ import CollectionItemWork from "./CollectionItemWork";
 
 class WorkCollection extends React.Component {
   render() {
-    const { data } = this.props;
-    const { edges: posts } = data.allMarkdownRemark;
-    const bigPosts = filter(
-      x => isEqual("large", get("node.frontmatter.display_size", x)),
-      posts
-    );
-    const otherPosts = filter(
-      x => !isEqual("large", get("node.frontmatter.display_size", x)),
-      posts
-    );
+    console.log(this.props);
+    const {
+      data: { small, large }
+    } = this.props;
 
     return (
       <>
@@ -29,14 +23,14 @@ class WorkCollection extends React.Component {
           className="wrap"
           gap="small"
         >
-          {otherPosts &&
-            chunkArray(otherPosts, 3, true).map((group, i) => (
+          {small.edges.length &&
+            chunkArray(small.edges, 3, true).map((group, i) => (
               <CollectionGroupWork group={group} key={`group-${i}`} />
             ))}
         </Box>
         <Box pad={{ vertical: "small" }} direction="row" gap="small">
-          {bigPosts &&
-            bigPosts.map(x => (
+          {large.edges.length &&
+            large.edges.map(x => (
               <Box flex="grow" direction="column" key={get("node.id", x)}>
                 <CollectionItemWork flex="grow" post={get("node", x)} />
               </Box>
@@ -49,7 +43,10 @@ class WorkCollection extends React.Component {
 
 WorkCollection.propTypes = {
   data: PropTypes.shape({
-    allMarkdownRemark: PropTypes.shape({
+    small: PropTypes.shape({
+      edges: PropTypes.array
+    }),
+    large: PropTypes.shape({
       edges: PropTypes.array
     })
   })
@@ -59,9 +56,14 @@ export default () => (
   <StaticQuery
     query={graphql`
       query WorkCollectionQuery {
-        allMarkdownRemark(
+        small: allMarkdownRemark(
           sort: { order: DESC, fields: [frontmatter___date] }
-          filter: { frontmatter: { templateKey: { eq: "work-post" } } }
+          filter: {
+            frontmatter: {
+              templateKey: { eq: "work-post" }
+              display_size: { eq: "small" }
+            }
+          }
         ) {
           edges {
             node {
@@ -79,7 +81,42 @@ export default () => (
                 caption
                 image {
                   childImageSharp {
-                    fluid(maxWidth: 600, quality: 60) {
+                    fluid(maxWidth: 300, quality: 60) {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        large: allMarkdownRemark(
+          sort: { order: DESC, fields: [frontmatter___date] }
+          filter: {
+            frontmatter: {
+              templateKey: { eq: "work-post" }
+              display_size: { eq: "large" }
+            }
+          }
+        ) {
+          edges {
+            node {
+              excerpt(pruneLength: 400)
+              id
+              fields {
+                slug
+              }
+              frontmatter {
+                title
+                templateKey
+                date(formatString: "MMMM DD, YYYY")
+                description
+                display_size
+                caption
+                image {
+                  childImageSharp {
+                    fluid(maxWidth: 800, quality: 70) {
                       ...GatsbyImageSharpFluid
                     }
                   }
