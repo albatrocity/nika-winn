@@ -18,8 +18,7 @@ export const AboutPageTemplate = ({
   image,
   twitter,
   instagram,
-  email,
-  etsy
+  email
 }) => {
   const PageContent = contentComponent || Content;
   const siteMeta = useSiteMetadata();
@@ -36,7 +35,6 @@ export const AboutPageTemplate = ({
             {email && <SocialLink service="email" handle={email} />}
             {instagram && <SocialLink service="instagram" handle={instagram} />}
             {twitter && <SocialLink service="twitter" handle={twitter} />}
-            {etsy && <SocialLink service="etsy" handle={etsy} />}
           </Box>
           <ContactForm />
         </Box>
@@ -63,7 +61,6 @@ const AboutPage = ({ data }) => {
         image={post.frontmatter.image}
         instagram={post.frontmatter.instagram_username}
         twitter={post.frontmatter.twitter_username}
-        etsy={post.frontmatter.etsy_username}
         email={post.frontmatter.email}
       />
     </Layout>
@@ -84,7 +81,6 @@ export const aboutPageQuery = graphql`
         title
         instagram_username
         twitter_username
-        etsy_username
         email
         image {
           childImageSharp {
