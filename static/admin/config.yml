@@ -49,7 +49,7 @@ collections:
               widget: "hidden",
               default: "index-page",
             }
-          - { label: Body, name: body, widget: text }
+          - { label: Body, name: body, widget: text, required: false }
           - { label: "Header Image", name: header, widget: image }
       - file: "src/pages/about/index.md"
         label: "About"
@@ -68,6 +68,7 @@ collections:
               label: "Instagram username",
               name: "instagram_username",
               widget: "string",
+              required: false,
             }
           - {
               label: "Twitter username",
@@ -75,4 +76,9 @@ collections:
               widget: "string",
               required: false,
             }
-          - { label: "Contact Email", name: "email", widget: "string" }
+          - {
+              label: "Contact Email",
+              name: "email",
+              widget: "string",
+              required: false,
+            }
