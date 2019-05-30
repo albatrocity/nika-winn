@@ -10,7 +10,6 @@ import CollectionItemWork from "./CollectionItemWork";
 
 class WorkCollection extends React.Component {
   render() {
-    console.log(this.props);
     const {
       data: { small, large }
     } = this.props;
