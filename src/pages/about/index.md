@@ -1,7 +1,7 @@
 ---
 templateKey: about-page
 title: Contact
-image: /img/nika_studio.jpg
+image: /img/974a0335edit.jpg
 instagram_username: kneekuh_
 twitter_username: ''
 email: info@nikawinn.com
