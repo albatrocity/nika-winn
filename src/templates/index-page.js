@@ -2,8 +2,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Box } from "grommet";
 import { Link, graphql } from "gatsby";
+import { head, get } from "lodash/fp";
 
 import Layout from "../components/Layout";
+import SEO from "../components/SEO";
 import Container from "../components/PageContainer";
 import Content from "../components/Content";
 import WorkCollection from "../components/WorkCollection";
@@ -26,10 +28,19 @@ IndexPageTemplate.propTypes = {
 };
 
 const IndexPage = ({ data }) => {
-  const { frontmatter } = data.markdownRemark;
+  const {
+    page: { frontmatter },
+    images
+  } = data;
 
   return (
     <Layout>
+      <SEO
+        image={get(
+          "node.frontmatter.image.childImageSharp.fixed.src",
+          head(images.edges)
+        )}
+      />
       <IndexPageTemplate body={frontmatter.body} />
     </Layout>
   );
@@ -47,9 +58,35 @@ export default IndexPage;
 
 export const pageQuery = graphql`
   query IndexPageTemplate {
-    markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
+    page: markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
       frontmatter {
         body
+      }
+    }
+
+    images: allMarkdownRemark(
+      sort: { order: DESC, fields: [frontmatter___date] }
+      limit: 1
+      filter: {
+        frontmatter: {
+          templateKey: { eq: "work-post" }
+          display_size: { eq: "small" }
+        }
+      }
+    ) {
+      edges {
+        node {
+          id
+          frontmatter {
+            image {
+              childImageSharp {
+                fixed(width: 600, quality: 80) {
+                  ...GatsbyImageSharpFixed_noBase64
+                }
+              }
+            }
+          }
+        }
       }
     }
   }

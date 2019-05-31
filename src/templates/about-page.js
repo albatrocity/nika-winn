@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import { graphql } from "gatsby";
+import SEO from "../components/SEO";
 import Layout from "../components/Layout";
 import Content, { HTMLContent } from "../components/Content";
 import ContactForm from "../components/ContactForm";
@@ -28,6 +29,11 @@ export const AboutPageTemplate = ({
 
   return (
     <Container>
+      <SEO
+        title={"About"}
+        description={content}
+        image={image.childImageSharp.fluid.src}
+      />
       <Box direction="row-responsive" gap="large">
         <PhotoBox flex="grow" basis="60%">
           <PreviewCompatibleImage imageInfo={{ image, alt: siteMeta.title }} />

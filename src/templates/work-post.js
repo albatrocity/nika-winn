@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { kebabCase } from "lodash";
-import Helmet from "react-helmet";
 import { graphql, Link } from "gatsby";
 import Layout from "../components/Layout";
+import SEO from "../components/SEO";
 import { Box, Heading, Text } from "grommet";
 import styled from "styled-components";
 import Content, { HTMLContent } from "../components/Content";
@@ -21,13 +21,16 @@ export const WorkPostTemplate = ({
   date,
   caption,
   image,
-  title,
-  helmet
+  title
 }) => {
   const PostContent = contentComponent || Content;
   return (
     <section>
-      {helmet || ""}
+      <SEO
+        title={title}
+        description={description}
+        image={image.childImageSharp.fluid.src}
+      />
       <Container>
         <Heading
           alignSelf="center"
@@ -64,8 +67,7 @@ WorkPostTemplate.propTypes = {
   content: PropTypes.node,
   contentComponent: PropTypes.func,
   description: PropTypes.string,
-  title: PropTypes.string,
-  helmet: PropTypes.object
+  title: PropTypes.string
 };
 
 const WorkPost = ({ data }) => {
@@ -80,15 +82,6 @@ const WorkPost = ({ data }) => {
         caption={post.frontmatter.caption}
         image={post.frontmatter.image}
         date={post.frontmatter.date}
-        helmet={
-          <Helmet titleTemplate="%s | Nika Winn">
-            <title>{`${post.frontmatter.title}`}</title>
-            <meta
-              name="description"
-              content={`${post.frontmatter.description}`}
-            />
-          </Helmet>
-        }
         title={post.frontmatter.title}
       />
     </Layout>
