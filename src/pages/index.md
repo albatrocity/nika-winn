@@ -1,4 +1,5 @@
 ---
 templateKey: index-page
-body: ""
+header: /img/nikawinnheader.jpg
 ---
+
