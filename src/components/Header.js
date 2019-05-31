@@ -11,7 +11,13 @@ const HeaderLink = styled(Link)`
   text-decoration: none;
 `;
 
-const HeaderTemplate = () => {
+const HeaderTemplate = ({
+  data: {
+    markdownRemark: {
+      frontmatter: { header }
+    }
+  }
+}) => {
   const { title, instagram } = useSiteMetadata();
   return (
     <Container direction="row">
@@ -24,12 +30,12 @@ const HeaderTemplate = () => {
       >
         <Box direction="column" flex="grow" justify="center">
           <HeaderLink to={"/"}>
-            {/* <Img
+            <Img
               fluid={header.childImageSharp.fluid}
               alt={title}
-              critical={true}
+              loading="eager"
               fadeIn={false}
-            /> */}
+            />
           </HeaderLink>
         </Box>
         <Box direction="row" gap="small" justify="end">
@@ -51,7 +57,13 @@ const Header = () => (
       query IndexPageHeader {
         markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
           frontmatter {
-            title
+            header {
+              childImageSharp {
+                fluid(maxWidth: 800, quality: 80) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
         }
       }
