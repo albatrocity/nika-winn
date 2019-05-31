@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 import { graphql } from "gatsby";
 import Layout from "../components/Layout";
 import Content, { HTMLContent } from "../components/Content";
@@ -10,6 +11,8 @@ import SocialLink from "../components/SocialLink";
 import { Box } from "grommet";
 
 import useSiteMetadata from "../components/SiteMetadata";
+
+const PhotoBox = styled(Box)``;
 
 export const AboutPageTemplate = ({
   title,
@@ -26,9 +29,9 @@ export const AboutPageTemplate = ({
   return (
     <Container>
       <Box direction="row-responsive" gap="large">
-        <Box flex="grow" width="medium">
+        <PhotoBox flex="grow" basis="60%">
           <PreviewCompatibleImage imageInfo={{ image, alt: siteMeta.title }} />
-        </Box>
+        </PhotoBox>
         <Box flex="shrink" style={{ minWidth: "200px" }}>
           <Box direction="column" gap="xsmall">
             <PageContent className="content" content={content} />
