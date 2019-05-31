@@ -25,13 +25,13 @@ export const AboutPageTemplate = ({
 
   return (
     <Container>
-      <Box direction="row-responsive" gap="medium">
-        <Box>
+      <Box direction="row-responsive" gap="large">
+        <Box flex="grow" width="medium">
           <PreviewCompatibleImage imageInfo={{ image, alt: siteMeta.title }} />
-          <PageContent className="content" content={content} />
         </Box>
         <Box flex="shrink" style={{ minWidth: "200px" }}>
           <Box direction="column" gap="xsmall">
+            <PageContent className="content" content={content} />
             {email && <SocialLink service="email" handle={email} />}
             {instagram && <SocialLink service="instagram" handle={instagram} />}
             {twitter && <SocialLink service="twitter" handle={twitter} />}
@@ -84,7 +84,7 @@ export const aboutPageQuery = graphql`
         email
         image {
           childImageSharp {
-            fluid(maxWidth: 800, quality: 80) {
+            fluid(maxWidth: 400, quality: 80) {
               ...GatsbyImageSharpFluid
             }
           }
