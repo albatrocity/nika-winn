@@ -29,7 +29,9 @@ export const WorkPostTemplate = ({
       <SEO
         title={title}
         description={description}
-        image={image.childImageSharp.fluid.src}
+        image={image.childImageSharp.fixed.src}
+        imageWidth={image.childImageSharp.fixed.width}
+        imageHeight={image.childImageSharp.fixed.height}
       />
       <Container>
         <Heading
@@ -110,6 +112,11 @@ export const pageQuery = graphql`
           childImageSharp {
             fluid(maxWidth: 800, quality: 80) {
               ...GatsbyImageSharpFluid
+            }
+            fixed(width: 400, quality: 90) {
+              src
+              width
+              height
             }
           }
         }

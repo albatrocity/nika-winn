@@ -32,7 +32,9 @@ export const AboutPageTemplate = ({
       <SEO
         title={"About"}
         description={content}
-        image={image.childImageSharp.fluid.src}
+        image={image.childImageSharp.fixed.src}
+        imageWidth={image.childImageSharp.fixed.width}
+        imageHeight={image.childImageSharp.fixed.height}
       />
       <Box direction="row-responsive" gap="large">
         <PhotoBox flex="grow" basis="60%">
@@ -95,6 +97,11 @@ export const aboutPageQuery = graphql`
           childImageSharp {
             fluid(maxWidth: 400, quality: 80) {
               ...GatsbyImageSharpFluid
+            }
+            fixed(width: 400, quality: 80) {
+              src
+              width
+              height
             }
           }
         }

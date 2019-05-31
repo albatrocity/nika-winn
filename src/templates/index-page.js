@@ -33,13 +33,17 @@ const IndexPage = ({ data }) => {
     images
   } = data;
 
+  const img = get(
+    "node.frontmatter.image.childImageSharp.fixed",
+    head(images.edges)
+  );
+
   return (
     <Layout>
       <SEO
-        image={get(
-          "node.frontmatter.image.childImageSharp.fixed.src",
-          head(images.edges)
-        )}
+        image={get("src", img)}
+        imageWidth={get("width", img)}
+        imageHeight={get("height", img)}
       />
       <IndexPageTemplate body={frontmatter.body} />
     </Layout>
