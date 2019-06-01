@@ -28,6 +28,12 @@ collections:
           options: ["small", "large"],
           default: "small",
         }
+      - {
+          label: "Display Order",
+          name: "display_order",
+          widget: "number",
+          required: false,
+        }
       - { label: "Caption", name: "caption", widget: "text", required: false }
       - {
           label: "Description",

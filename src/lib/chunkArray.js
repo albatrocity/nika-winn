@@ -25,6 +25,16 @@ export default function chunkify(a, n, balanced) {
     }
     out.push(a.slice(size * n));
   }
+  const final = [[], [], []];
+  out.map(x => {
+    x.map((y, i) => {
+      if (i < len) {
+        final[i].unshift(y);
+      } else {
+        final[0].unshift(y);
+      }
+    });
+  });
 
-  return out;
+  return final;
 }

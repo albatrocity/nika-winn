@@ -56,7 +56,7 @@ export default () => (
     query={graphql`
       query WorkCollectionQuery {
         small: allMarkdownRemark(
-          sort: { order: DESC, fields: [frontmatter___date] }
+          sort: { order: DESC, fields: [frontmatter___display_order] }
           filter: {
             frontmatter: {
               templateKey: { eq: "work-post" }
@@ -91,7 +91,7 @@ export default () => (
         }
 
         large: allMarkdownRemark(
-          sort: { order: DESC, fields: [frontmatter___date] }
+          sort: { order: ASC, fields: [frontmatter___display_order] }
           filter: {
             frontmatter: {
               templateKey: { eq: "work-post" }
