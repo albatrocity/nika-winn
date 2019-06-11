@@ -7,26 +7,17 @@ import { filter, get, isEqual } from "lodash/fp";
 
 import CollectionGroupWork from "./CollectionGroupWork";
 import CollectionItemWork from "./CollectionItemWork";
+import WorkColumns from "./WorkColumns";
 
 class WorkCollection extends React.Component {
   render() {
     const {
       data: { small, large }
     } = this.props;
-
+    console.log(small.edges);
     return (
       <>
-        <Box
-          pad={{ vertical: "small" }}
-          direction="row-responsive"
-          className="wrap"
-          gap="small"
-        >
-          {small.edges.length &&
-            chunkArray(small.edges, 3, true).map((group, i) => (
-              <CollectionGroupWork group={group} key={`group-${i}`} />
-            ))}
-        </Box>
+        <WorkColumns data={small.edges} />
         <Box pad={{ vertical: "small" }} direction="row" gap="small">
           {large.edges.length &&
             large.edges.map(x => (
@@ -56,7 +47,6 @@ export default () => (
     query={graphql`
       query WorkCollectionQuery {
         small: allMarkdownRemark(
-          sort: { order: DESC, fields: [frontmatter___display_order] }
           filter: {
             frontmatter: {
               templateKey: { eq: "work-post" }
@@ -77,10 +67,11 @@ export default () => (
                 date(formatString: "MMMM DD, YYYY")
                 description
                 display_size
+                grid_area
                 caption
                 image {
                   childImageSharp {
-                    fluid(maxWidth: 300, quality: 60) {
+                    fluid(maxWidth: 600, quality: 75) {
                       ...GatsbyImageSharpFluid
                     }
                   }
