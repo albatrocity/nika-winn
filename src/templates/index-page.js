@@ -42,8 +42,8 @@ const IndexPage = ({ data }) => {
     <Layout>
       <SEO
         image={get("src", img)}
-        imageWidth={get("width", img)}
-        imageHeight={get("height", img)}
+        imageWidth={`${get("width", img)}px`}
+        imageHeight={`${get("height", img)}px`}
       />
       <IndexPageTemplate body={frontmatter.body} />
     </Layout>

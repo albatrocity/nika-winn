@@ -9,6 +9,14 @@ import useSiteMetadata from "./SiteMetadata";
 
 const HeaderLink = styled(Link)`
   text-decoration: none;
+  color: ${p => p.theme.global.colors[p.theme.anchor.color.light]};
+  font-weight: ${p => p.theme.anchor.fontWeight};
+  &:visited {
+    color: ${p => p.theme.global.colors[p.theme.anchor.color.light]};
+  }
+  &:hover {
+    text-decoration: ${p => p.theme.anchor.hover.textDecoration};
+  }
 `;
 
 const HeaderTemplate = ({
@@ -39,9 +47,7 @@ const HeaderTemplate = ({
           </HeaderLink>
         </Box>
         <Box direction="row" gap="small" justify="end">
-          <HeaderLink to={"/about"}>
-            <Anchor>About</Anchor>
-          </HeaderLink>
+          <HeaderLink to={"/about"}>About</HeaderLink>
           <Anchor href={`https://instagram.com/${instagram}/`} target="_blank">
             <Instagram />
           </Anchor>

@@ -30,8 +30,8 @@ export const WorkPostTemplate = ({
         title={title}
         description={description}
         image={image.childImageSharp.fixed.src}
-        imageWidth={image.childImageSharp.fixed.width}
-        imageHeight={image.childImageSharp.fixed.height}
+        imageWidth={`${image.childImageSharp.fixed.width}px`}
+        imageHeight={`${image.childImageSharp.fixed.height}px`}
       />
       <Container>
         <Heading

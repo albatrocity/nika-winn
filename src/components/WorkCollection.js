@@ -4,6 +4,7 @@ import chunkArray from "../lib/chunkArray";
 import { Link, graphql, StaticQuery } from "gatsby";
 import { Box, Grid } from "grommet";
 import { filter, get, isEqual } from "lodash/fp";
+import { parse } from "date-fns";
 
 import CollectionGroupWork from "./CollectionGroupWork";
 import CollectionItemWork from "./CollectionItemWork";
@@ -14,7 +15,6 @@ class WorkCollection extends React.Component {
     const {
       data: { small, large }
     } = this.props;
-    console.log(small.edges);
     return (
       <>
         <WorkColumns data={small.edges} />
