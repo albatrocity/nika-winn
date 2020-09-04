@@ -48,6 +48,9 @@ const HeaderTemplate = ({
         </Box>
         <Box direction="row" gap="small" justify="end">
           <HeaderLink to={"/about"}>About</HeaderLink>
+          <Anchor href={`https://nikawinn.storenvy.com/`} target="_blank">
+            Shop
+          </Anchor>
           <Anchor href={`https://instagram.com/${instagram}/`} target="_blank">
             <Instagram />
           </Anchor>
