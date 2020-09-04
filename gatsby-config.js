@@ -72,14 +72,11 @@ module.exports = {
       }
     },
     {
-      resolve: `gatsby-plugin-prefetch-google-fonts`,
+      resolve: "gatsby-plugin-web-font-loader",
       options: {
-        fonts: [
-          {
-            family: `Heebo`,
-            variants: [`300`, `400`, `400i`, `700`, `700i`]
-          }
-        ]
+        google: {
+          families: ["Heebo:300,400,400i,700,700i", "Droid Serif"]
+        }
       }
     },
     {
